@@ -1,0 +1,80 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+class Personagem {
+    Scanner entrada = new Scanner(System.in);
+    private int escolha;
+    private int idPersonagem = 1;
+    private String nome_Personagem;
+    private String classe;
+    private int vida_Personagem;
+    private int energia;
+    private float habilidade_Personagem;
+
+    private static ArrayList <Personagem> listaPersonagem = new ArrayList<Personagem>();
+    public Personagem(){
+    }
+
+    public Personagem(String nome_Personagem, String classe, int vida_Personagem, int energia, int escolha){
+        this.nome_Personagem = nome_Personagem;
+        this.classe = classe;
+        this.vida_Personagem = vida_Personagem;
+        this.energia = energia;
+        this.escolha = escolha;
+    }
+
+    public static void escolherPersonagem(){
+        Scanner entrada = new Scanner(System.in);
+        String nome_Personagem = "";
+        String classe = "";
+        int vida_Personagem = 0;
+        int energia = 0;
+        float habilidade_Personagem;
+        int escolha;
+        do{
+            System.out.println("Selecione seu Personagem: ");
+            System.out.println("1- Classe: Guerreiro\nNome: Loric\n100 pontos de vida\n\n");
+            System.out.println("2- Classe: Assassino\nNome: Fey\n50 pontos de vida\n");
+            escolha = entrada.nextInt();
+            if (escolha == 1){
+                nome_Personagem = "Loric";
+                classe = "Guerreiro";
+                vida_Personagem = 100;
+                energia = 3;
+            } else if (escolha == 2){
+                nome_Personagem = "Fey";
+                classe = "Assassino";
+                vida_Personagem = 50;
+                energia = 4;
+            } else {
+                System.out.println("Escolha inválida. Tente novamente.");
+            }
+        } while (escolha < 1 || escolha > 2);
+        Personagem escolhaPersonagem = new Personagem(nome_Personagem, classe, vida_Personagem, energia, escolha);
+        listaPersonagem.add(escolhaPersonagem);
+        System.out.println(nome_Personagem + "\n" + classe + "\n" + vida_Personagem + " pontos de vida");
+    }
+
+    public void receberDano(int dano) {
+        vida_Personagem -= dano;
+        if (vida_Personagem < 0) {
+            vida_Personagem = 0;
+        }
+    }
+
+    public String getNome() {
+        return nome_Personagem;
+    }
+
+    public int getVida() {
+        return vida_Personagem;
+    }
+
+    public int getEnergia(){
+        return energia;
+    }
+
+    public int getEscolha(){
+        return escolha;
+    }
+
+}
