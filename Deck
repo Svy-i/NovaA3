@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+
+class Deck {
+    private String nome;
+    private int custo;
+    private String descricao;
+
+    private static ArrayList<ArrayList<Deck>> deckCompleto  = new ArrayList<ArrayList<Deck>>();
+
+    // Construtor
+    public Deck(){
+    }
+    public Deck(String nome, int custo, String descricao) {
+        this.nome = nome;
+        this.custo = custo;
+        this.descricao = descricao;
+    }
+
+    // Getters
+    public String getNome() {
+        return nome;
+    }
+
+    public int getCusto() {
+        return custo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+public void deck_Utilizado( ){
+    // Lista de cartas
+    ArrayList<Deck> listaCartas = new ArrayList<>();
+
+    // Criando as cartas com seus nomes e tipos
+    listaCartas.add(new Deck("Corte", 1, "Cause 6 de dano"));
+    listaCartas.add(new Deck("Porrada", 2, "Cause 8 de dano e aumente em 50% o dano recebido pelo alvo"));
+    listaCartas.add(new Deck("Desafiar", 0, "Só pode ser jogada caso tenha apenas cartas de ataque na mão. Cause 14 de dano"));
+    listaCartas.add(new Deck("Defender", 1, "Ganhe 5 de defesa neste turno"));
+    listaCartas.add(new Deck("Sanguinário", 2, "Cause 20 de dano. Sempre que jogar essa carta ela perderá 2 de dano"));
+    listaCartas.add(new Deck("Voadora", 1, "Cause 5 de dano. Se o inimigo recebeu dano neste turno, ganhe 1 de energia e compre uma carta."));
+    listaCartas.add(new Deck("Separar Alma", 2, "Cause 12 de dano. Recupere 4 de vida."));
+    listaCartas.add(new Deck("Trance de Batalha", 0, "Compre 2 cartas."));
+    listaCartas.add(new Deck("Flexionar", 0, "Ganhe +2 de ataque neste turno."));
+    listaCartas.add(new Deck("Forma Demoníaca", 3, "Ganhe +2 de ataque no fim de cada turno."));
+    listaCartas.add(new Deck("Escudo de Fogo", 2, "Ganhe 12 de defesa. Cada vez que for atacado no próximo turno, o inimigo receberá 3 de dano"));
+    deckCompleto.add(listaCartas);
+
+    // Imprimindo a lista de cartas
+    for (int i = 0; i < listaCartas.size(); i++) {
+        System.out.println(listaCartas.get(i).nome + "\nCusto " + listaCartas.get(i).custo + ".\n" + listaCartas.get(i).descricao + "\n\n");
+    }
+    }
+}
