@@ -1,0 +1,57 @@
+// Classe base para uma carta
+import java.util.ArrayList;
+
+abstract class Carta {
+    String nome_Carta;
+    int custo;  // Custo em energia
+    String descricao;
+
+    // Construtor
+    public Carta(String nome, int custo, String descricao) {
+        this.nome_Carta = nome;
+        this.custo = custo;
+        this.descricao = descricao;
+    }
+
+    // Método abstrato para a ação da carta
+    public abstract void usar(Jogador jogador, Inimigo inimigo);
+}
+
+// Carta de Ataque
+class CartaAtaque extends Carta {
+    int dano;
+
+    public CartaAtaque(String nome, int custo, int dano, String descricao) {
+        super(nome, custo, descricao);
+        this.dano = dano;
+    }
+
+    @Override
+    public void usar(Jogador jogador, Inimigo inimigo) {
+        Personagem personagem = new Personagem();
+        personagem.getNome();
+        System.out.println(" usa " + nome_Carta + " e causa " + dano + " de dano ao inimigo!");
+        inimigo.receberDano(dano);
+    }
+}
+
+// Carta de Defesa
+class CartaDefesa extends Carta {
+    int bloqueio;
+
+    public CartaDefesa(String nome, int custo, int bloqueio, String descricao) {
+        super(nome, custo, descricao);
+        this.bloqueio = bloqueio;
+    }
+
+    @Override
+    public void usar(Jogador jogador, Inimigo inimigo) {
+        Personagem personagem = new Personagem();
+        personagem.getNome();
+        System.out.println(" usa " + nome_Carta + " e ganha " + bloqueio + " de bloqueio!");
+        jogador.receberBloqueio(bloqueio);
+    }
+
+
+
+}
