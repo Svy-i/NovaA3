@@ -1,0 +1,25 @@
+class Inimigo {
+    private String nome;
+    private int vida;
+
+    public Inimigo(String nome, int vida) {
+        this.nome = nome;
+        this.vida = vida;
+    }
+
+    public void receberDano(int dano) {
+        vida -= dano;
+        if (vida < 0) {
+            vida = 0;
+        }
+        System.out.println(nome + " recebeu " + dano + " de dano. Vida restante: " + vida);
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+}
