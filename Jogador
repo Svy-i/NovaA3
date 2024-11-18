@@ -1,0 +1,79 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+class Jogador {
+    Personagem personagem = new Personagem();
+    private String nome_Jogador;
+    private int partidas_Concluidas;
+    private List<Carta> deck;
+    private List<Carta> maos;
+
+    private static ArrayList <Jogador> listaJogador = new ArrayList<Jogador>();
+
+    public Jogador(){
+    }
+
+    public Jogador(String nome_Jogador) {
+        this.nome_Jogador = nome_Jogador;
+        this.deck = new ArrayList<>();
+        this.maos = new ArrayList<>();
+        inicializarDeck();
+    }
+
+    public static void criarJogador(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Insira um nome de usuário");
+        String nome_Jogador = entrada.nextLine();
+        Jogador novoJogador = new Jogador(nome_Jogador);
+
+        listaJogador.add(novoJogador);
+        System.out.println("Jogador cadastrado com sucesso!");
+
+        System.out.println("Jogadores cadastrados:");
+        System.out.println(listaJogador);
+        System.out.print("\n\n\n");
+
+    }
+
+
+    private void inicializarDeck() {
+        int escolha = personagem.getEscolha();
+
+        // Inicializando o deck do jogador com algumas cartas de exemplo
+        if (escolha == 1) {
+            deck.add(new CartaAtaque("Golpe Rápido", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaDefesa("Escudo de Ferro", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaAtaque("Golpe Pesado", 2, 12, "Causa 12 de dano"));
+        } else if (escolha == 2){
+            deck.add(new CartaAtaque("Facada", 1, 6, "Causa 6 de dano"));
+            deck.add(new CartaDefesa("Desvanecer", 1, 5, "Bloqueia 5 de dano"));
+            deck.add(new CartaAtaque("Corte sanguinário", 2, 12, "Causa 8 de dano, deixe o alvo sangrando por 2 turnos"));
+        } else {
+            return;
+        }
+    }
+
+    public void embaralharDeck() {
+        // Embaralha as cartas do deck
+        // (Simplesmente adicionando as cartas ao deck para simplificação)
+        maos.clear();
+        maos.add(deck.get(0));  // Pegando a primeira carta como exemplo
+    }
+
+    int energia = personagem.getEnergia();
+
+    public void usarCarta(int indiceCarta, Inimigo inimigo) {
+        if (energia >= maos.get(indiceCarta).custo) {
+            energia -= maos.get(indiceCarta).custo;
+            maos.get(indiceCarta).usar(this, inimigo);
+        } else {
+            System.out.println("Energia insuficiente para usar a carta.");
+        }
+    }
+
+    public void receberBloqueio(int bloqueio) {
+        // Lógica para adicionar bloqueio
+    }
+
+}
