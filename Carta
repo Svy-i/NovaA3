@@ -1,57 +1,83 @@
 // Classe base para uma carta
-import java.util.ArrayList;
 
-abstract class Carta {
-    String nome_Carta;
+abstract class Carta{
+    String nomeCarta;
     int custo;  // Custo em energia
     String descricao;
 
     // Construtor
-    public Carta(String nome, int custo, String descricao) {
-        this.nome_Carta = nome;
+    public Carta(String nome, int custo, String descricao){
+        this.nomeCarta = nome;
         this.custo = custo;
         this.descricao = descricao;
     }
 
     // Método abstrato para a ação da carta
-    public abstract void usar(Jogador jogador, Inimigo inimigo);
+    public abstract void usar(Baralho baralho, Inimigo inimigo);
 }
 
 // Carta de Ataque
-class CartaAtaque extends Carta {
+class CartaAtaque extends Carta{
     int dano;
 
-    public CartaAtaque(String nome, int custo, int dano, String descricao) {
+    public CartaAtaque(String nome, int custo, int dano, String descricao){
         super(nome, custo, descricao);
         this.dano = dano;
     }
 
     @Override
-    public void usar(Jogador jogador, Inimigo inimigo) {
+    public void usar(Baralho baralho, Inimigo inimigo){
         Personagem personagem = new Personagem();
         personagem.getNome();
-        System.out.println(" usa " + nome_Carta + " e causa " + dano + " de dano ao inimigo!");
+        System.out.println("\nUsa " + nomeCarta + " e causa " + dano + " de dano ao inimigo!");
         inimigo.receberDano(dano);
     }
 }
 
 // Carta de Defesa
-class CartaDefesa extends Carta {
-    int bloqueio;
+class CartaDefesa extends Carta{
+    int defesa;
 
-    public CartaDefesa(String nome, int custo, int bloqueio, String descricao) {
+    public CartaDefesa(String nome, int custo, int defesa, String descricao){
         super(nome, custo, descricao);
-        this.bloqueio = bloqueio;
+        this.defesa = defesa;
     }
 
     @Override
-    public void usar(Jogador jogador, Inimigo inimigo) {
-        Personagem personagem = new Personagem();
-        personagem.getNome();
-        System.out.println(" usa " + nome_Carta + " e ganha " + bloqueio + " de bloqueio!");
-        jogador.receberBloqueio(bloqueio);
+    public void usar(Baralho baralho, Inimigo inimigo){
+        System.out.println("\nUsa " + nomeCarta + " e ganha " + defesa + " de defesa!");
+        baralho.receberDefesa(defesa);
+    }
+}
+
+class CartaCompra extends Carta{
+    int compra;  // Quantidade de cartas a serem compradas
+
+    // Construtor
+    public CartaCompra(String nome, int custo, int compra, String descricao){
+        super(nome, custo, descricao);
+        this.compra = compra;
     }
 
+    @Override
+    public void usar(Baralho baralho, Inimigo inimigo){
+        // Verificar se o baralho tem cartas suficientes
+        if (baralho.getDeck().size() < compra) {
+            System.out.println("Não há cartas suficientes para comprar.");
+            return;
+        }
 
+        // Comprar as cartas e adicionar à mão do jogador
+        for (int i = 0; i < compra; i++) {
+            //Carta cartaComprada = (Carta) baralho.getMaos().get(baralho.getMaos().size() - 1);
+            baralho.getMaos().add(baralho.getDeck().get(i));
+            baralho.getDeck().remove(i);
+        }
 
+        System.out.println("Você usou " + nomeCarta + " e comprou " + compra + " carta(s).");
+    }
+    @Override
+    public String toString() {
+        return nomeCarta + "\nCusto " + custo + ".\n" + descricao + "\n\n";
+    }
 }
