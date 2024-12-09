@@ -91,6 +91,21 @@ VALUES
 ('Beber Sangue', 'Cura', 0, 'Cause 3 de dano. Ganhe 2 de vida.', 3, NULL, 2, NULL),
 ('Separar Alma', 'Cura', 0, 'Cause 3 de dano. Ganhe 2 de vida.', 3, NULL, 2, NULL);
 
+INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia)
+values
+('Loric', 'Guerreiro', 100, 3); 
+
+INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia)
+values
+('Fey', 'Assassino', 50, 4);
+
+INSERT INTO inimigo (nomeINimigo, vidaInimigo, ataqueInimigo)
+values
+('Bandido', 50, 6),
+('Mestre Fúngico', 75, 8),
+('Gnoll', 30, 16),
+('Bruxa do Pântano', 100, 12),
+('Axolotl, Mestre da Chama Sombria', 200, 20);
 
 INSERT INTO Baralho(nomeBaralho, idCarta, idPersonagem)
 values
@@ -137,11 +152,3 @@ values
 ('Baralho de Assassino', 13, 2),
 ('Baralho de Assassino', 14, 2);
 ('Baralho de Assassino', 14, 2);
-
-INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia)
-values
-('Loric', 'Guerreiro', 100, 3); 
-
-INSERT INTO personagem (nomePersonagem, classe, vidaPersonagem, energia)
-values
-('Fey', 'Assassino', 50, 4);
