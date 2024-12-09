@@ -126,8 +126,8 @@ values
 ('Baralho de Guerreiro', 7, 1),
 ('Baralho de Guerreiro', 7, 1),
 ('Baralho de Guerreiro', 7, 1),
-('Baralho de Guerreiro', 8, 1);
-('Baralho de Guerreiro', 8, 1);
+('Baralho de Guerreiro', 8, 1),
+('Baralho de Guerreiro', 8, 1),
 ('Baralho de Guerreiro', 8, 1);
 
 INSERT INTO baralho (nomeBaralho, idCarta, idPersonagem)
@@ -150,5 +150,5 @@ values
 ('Baralho de Assassino', 13, 2),
 ('Baralho de Assassino', 13, 2),
 ('Baralho de Assassino', 13, 2),
-('Baralho de Assassino', 14, 2);
+('Baralho de Assassino', 14, 2),
 ('Baralho de Assassino', 14, 2);
